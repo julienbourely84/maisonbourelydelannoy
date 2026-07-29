@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infos pratiques — Maison Bourely</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --stone: #F3EEE2;
+      --stone-deep: #E8E0CC;
+      --paper: #FBF8F1;
+      --shutter: #2C4652;
+      --shutter-deep: #1D323C;
+      --shutter-soft: #4E6E7A;
+      --olive: #6B7A47;
+      --olive-deep: #4F5B34;
+      --ochre: #8C5F22;
+      --ochre-soft: #E4C08F;
+      --ochre-mid: #C1893E;
+      --ink: #22303A;
+      --ink-soft: #55636B;
+      --ink-faint: #8A9298;
+      --line: #D9D0BA;
+      --white: #FFFFFF;
+      --shadow: 0 1px 2px rgba(29,50,60,.04), 0 8px 24px rgba(29,50,60,.07);
+      --shadow-lift: 0 4px 10px rgba(29,50,60,.06), 0 16px 40px rgba(29,50,60,.12);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--stone);
+      color: var(--ink);
+      font-family: 'Work Sans', -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; color: var(--shutter-deep); margin: 0; line-height: 1.15; }
+    p { margin: 0 0 1em; }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+
+    /* ---------- shutter-slat motif ---------- */
+    .slats { display: flex; flex-direction: column; gap: 4px; width: 34px; }
+    .slats span { display: block; height: 3px; border-radius: 2px; background: currentColor; }
+    .slats span:nth-child(1){ width: 100%; opacity:.95;}
+    .slats span:nth-child(2){ width: 78%; opacity:.7;}
+    .slats span:nth-child(3){ width: 55%; opacity:.45;}
+
+    /* ---------- header / nav ---------- */
+    header.site {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(251,248,241,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    header.site .bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 28px; max-width: 1040px; margin: 0 auto;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--shutter-deep); }
+    .brand .slats { color: var(--ochre); }
+    .brand-text { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; letter-spacing: .01em; }
+    .brand-text small { display: block; font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin-top: 1px; }
+
+    nav.main { display: flex; gap: 4px; }
+    nav.main a {
+      text-decoration: none; color: var(--ink-soft); font-size: .92rem; font-weight: 500;
+      padding: 8px 14px; border-radius: 999px; transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    nav.main a:hover { background: var(--stone-deep); color: var(--shutter-deep); }
+    nav.main a.active { background: var(--shutter); color: var(--paper); }
+    .nav-toggle { display: none; }
+
+    @media (max-width: 720px) {
+      header.site .bar { padding: 14px 20px; }
+      nav.main { position: fixed; inset: auto 0 0 0; background: var(--paper); border-top: 1px solid var(--line);
+        justify-content: space-around; padding: 6px 6px calc(6px + env(safe-area-inset-bottom)); box-shadow: 0 -6px 20px rgba(29,50,60,.08); }
+      nav.main a { flex: 1; text-align: center; padding: 8px 4px; font-size: .74rem; }
+      body { padding-bottom: 64px; }
+    }
+
+    /* ---------- eyebrow / labels ---------- */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--ochre);
+      margin-bottom: 14px;
+    }
+    .eyebrow::before { content:''; width: 18px; height: 1px; background: var(--ochre); }
+
+    /* ---------- hero ---------- */
+    .hero {
+      background:
+        radial-gradient(ellipse 900px 500px at 85% -10%, rgba(107,122,71,.16), transparent 60%),
+        linear-gradient(180deg, var(--shutter-deep), var(--shutter) 65%, var(--shutter-soft));
+      color: var(--paper);
+      padding: 76px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: ''; position: absolute; right: -60px; top: -40px; width: 340px; height: 340px;
+      border: 1px solid rgba(251,248,241,.14); border-radius: 50%;
+    }
+    .hero::before {
+      content: ''; position: absolute; right: 40px; top: 20px; width: 220px; height: 220px;
+      border: 1px solid rgba(251,248,241,.1); border-radius: 50%;
+    }
+    .hero .wrap { position: relative; }
+    .hero .eyebrow { color: var(--ochre-soft); }
+    .hero .eyebrow::before { background: var(--ochre-soft); }
+    .hero h1 { color: var(--white); font-size: clamp(2.1rem, 4.6vw, 3.4rem); max-width: 15ch; }
+    .hero .lede { color: rgba(251,248,241,.82); font-size: 1.1rem; max-width: 46ch; margin-top: 16px; }
+
+    /* ---------- quick info bar ---------- */
+    .infobar {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+      margin-top: -34px; position: relative; z-index: 2; box-shadow: var(--shadow-lift);
+    }
+    .infobar .cell { background: var(--paper); padding: 18px 20px; }
+    .infobar .cell .ic { color: var(--olive); margin-bottom: 10px; }
+    .infobar .cell .k { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); font-weight: 600; margin-bottom: 3px; }
+    .infobar .cell .v { font-size: .95rem; font-weight: 600; color: var(--shutter-deep); }
+    .infobar .cell .v.muted { color: var(--ink-faint); font-weight: 500; font-style: italic; font-size: .85rem;}
+
+    /* ---------- section chapters (avant/pendant/après) ---------- */
+    .chapter { padding: 68px 0; }
+    .chapter.tint { background: var(--stone-deep); }
+    .chapter-head { display:flex; align-items:baseline; gap:18px; margin-bottom: 36px; flex-wrap: wrap;}
+    .chapter-num { font-family:'JetBrains Mono',monospace; font-size:.85rem; color: var(--ochre); border:1px solid var(--ochre-soft); padding: 3px 10px; border-radius: 999px;}
+    .chapter-head h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+    .chapter-sub { color: var(--ink-soft); max-width: 60ch; margin-top: -20px; margin-bottom: 32px;}
+
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 18px; }
+    .card {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 26px; box-shadow: var(--shadow); text-decoration: none; color: inherit;
+      transition: transform .18s ease, box-shadow .18s ease; display:flex; flex-direction:column; gap:12px;
+    }
+    a.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+    .card .ic { color: var(--shutter); }
+    .card h3 { font-size: 1.15rem; }
+    .card p { color: var(--ink-soft); font-size: .92rem; margin-bottom: 0; }
+    .card .go { margin-top: auto; font-size: .82rem; font-weight: 600; color: var(--ochre); display:flex; align-items:center; gap:6px; }
+
+    /* ---------- buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+      font-weight: 600; font-size: .95rem; padding: 13px 24px; border-radius: 999px;
+      border: 1px solid transparent; transition: transform .15s, box-shadow .15s, background .15s;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--ochre); color: var(--white); box-shadow: var(--shadow); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+    .btn-ghost { background: transparent; border-color: rgba(251,248,241,.4); color: var(--paper); }
+    .btn-ghost:hover { background: rgba(251,248,241,.12); }
+    .btn-outline { background: var(--paper); border-color: var(--line); color: var(--shutter-deep); }
+    .btn-outline:hover { border-color: var(--shutter); }
+
+    /* ---------- steps (pool instructions) ---------- */
+    .steps { display: flex; flex-direction: column; gap: 14px; }
+    .step {
+      display: grid; grid-template-columns: 220px 1fr; gap: 24px;
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 20px; align-items: center;
+    }
+    .step .num {
+      font-family: 'JetBrains Mono', monospace; color: var(--ochre); font-size: .78rem;
+      letter-spacing: .08em; margin-bottom: 8px; display:block;
+    }
+    .step figure { margin: 0; border-radius: 10px; overflow: hidden; background: var(--stone-deep); aspect-ratio: 4/3;}
+    .step figure img { width: 100%; height: 100%; object-fit: cover; }
+    .step:has(.figs) { grid-template-columns: 340px 1fr; }
+    .step .figs { display:flex; gap:8px; }
+    .step .figs figure { flex: 1; min-width: 0; }
+    @media (max-width: 640px) { .step:has(.figs) { grid-template-columns: 1fr; } }
+    .step .body h4 { font-size: 1.02rem; margin-bottom: 6px; color: var(--shutter-deep); }
+    .step .body p { color: var(--ink-soft); font-size: .93rem; margin-bottom: 0; }
+    @media (max-width: 640px) { .step { grid-template-columns: 1fr; } }
+
+    .section-label {
+      display:flex; align-items:center; gap: 14px; margin: 46px 0 18px;
+    }
+    .section-label .dot { width: 34px; height:34px; border-radius:50%; background:var(--shutter); color:var(--paper); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+    .section-label h3 { font-size: 1.3rem; }
+    .section-label .freq { color: var(--ink-faint); font-size: .82rem; margin-left:auto; text-align:right; font-style:italic;}
+    .section-intro-first .section-label { margin-top: 0; }
+
+    /* ---------- callouts ---------- */
+    .callout {
+      display:flex; gap:14px; padding: 18px 20px; border-radius: var(--radius);
+      border: 1px solid var(--ochre-soft); background: #FBF1E1; margin: 18px 0;
+    }
+    .callout .ic { color: var(--ochre); flex-shrink:0; margin-top:2px;}
+    .callout strong { color: var(--shutter-deep); }
+    .callout p { margin: 4px 0 0; color: var(--ink-soft); font-size: .93rem; }
+
+    /* ---------- dial (valve position) ---------- */
+    .dial-row { display:flex; gap:10px; flex-wrap:wrap; margin: 6px 0 4px; }
+    .dial {
+      font-family:'JetBrains Mono',monospace; font-size:.76rem; letter-spacing:.08em;
+      border: 1.5px solid var(--line); color: var(--ink-faint); padding: 6px 13px; border-radius: 8px;
+      text-transform: uppercase;
+    }
+    .dial.active { border-color: var(--shutter); color: var(--shutter-deep); background: var(--stone); font-weight:600; }
+    .dial.arrow::after { content:'→'; margin-left:8px; color: var(--ink-faint); }
+    .dial.arrow:last-child::after { content:''; }
+
+    /* ---------- practical info grid ---------- */
+    .pgrid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; }
+    .pcard { background:var(--paper); border:1px solid var(--line); border-radius: var(--radius); padding:22px; box-shadow: var(--shadow); }
+    .pcard .ic { color: var(--olive); margin-bottom: 12px; }
+    .pcard h4 { font-size: 1.02rem; margin-bottom: 8px; }
+    .pcard p { color: var(--ink-soft); font-size: .9rem; margin-bottom:0; }
+    .fill {
+      display:inline-block; margin-top:10px; font-family:'JetBrains Mono',monospace; font-size:.72rem;
+      letter-spacing:.05em; color: var(--ochre); background: #FBF1E1; border:1px dashed var(--ochre-soft);
+      padding: 5px 10px; border-radius: 7px;
+    }
+
+    /* ---------- gallery placeholders ---------- */
+    .gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:14px; }
+    .gtile {
+      aspect-ratio: 4/3; border-radius: 12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+      background: repeating-linear-gradient(135deg, var(--stone-deep), var(--stone-deep) 10px, var(--stone) 10px, var(--stone) 20px);
+      border: 1px solid var(--line); color: var(--ink-faint);
+    }
+    .gtile .ic { color: var(--shutter-soft); }
+    .gtile span { font-size: .74rem; font-weight:600; letter-spacing:.03em; }
+
+    /* ---------- route / access ---------- */
+    .route-map { background: var(--paper); border:1px solid var(--line); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); }
+    .waypoints { display:flex; flex-direction:column; }
+    .wp { display:grid; grid-template-columns: 34px 1fr; gap:16px; position:relative; padding-bottom: 26px; }
+    .wp:last-child{ padding-bottom:0;}
+    .wp .pin { width:34px; height:34px; border-radius:50%; background:var(--stone-deep); border:2px solid var(--shutter); color:var(--shutter-deep); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:.78rem; font-weight:700; z-index:1; }
+    .wp.dest .pin { background: var(--ochre); border-color: var(--ochre); color: var(--white); }
+    .wp:not(:last-child)::before { content:''; position:absolute; left:16px; top:34px; bottom:0; width:2px; background: var(--line); }
+    .wp h4 { font-size: .98rem; margin-bottom:3px; }
+    .wp p { font-size: .87rem; color: var(--ink-soft); margin-bottom:0; }
+    .wp .tag { display:inline-block; font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color: var(--olive); font-weight:700; margin-top:4px;}
+
+    /* ---------- address block ---------- */
+    .addr-block { display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between; }
+    .addr-text { font-family:'Fraunces',serif; font-size:1.3rem; color: var(--shutter-deep); }
+    .addr-text small { display:block; font-family:'Work Sans',sans-serif; font-size:.78rem; color: var(--ink-faint); text-transform:uppercase; letter-spacing:.08em; margin-top:4px; font-weight:600;}
+
+    /* ---------- footer ---------- */
+    footer.site { background: var(--shutter-deep); color: rgba(251,248,241,.75); padding: 48px 0 90px; margin-top: 20px; }
+    footer.site .wrap { display:flex; flex-wrap:wrap; gap:28px; justify-content:space-between; align-items:flex-start; }
+    footer.site .brand-text { color: var(--paper); }
+    footer.site .brand .slats { color: var(--ochre-soft); }
+    .foot-emg { display:flex; gap:22px; flex-wrap:wrap; }
+    .foot-emg a { text-decoration:none; color: rgba(251,248,241,.85); font-size:.86rem; }
+    .foot-emg .num { font-family:'JetBrains Mono',monospace; color: var(--ochre-soft); font-weight:700; margin-right:6px; }
+    @media (max-width: 720px) { footer.site { padding-bottom: 100px; } }
+
+    ::selection { background: var(--ochre-soft); color: var(--shutter-deep); }
+    :focus-visible { outline: 2px solid var(--ochre); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <a class="brand" href="index.html">
+      <span class="slats"><span></span><span></span><span></span></span>
+      <span class="brand-text">Maison Bourely<small>Vedène · Provence</small></span>
+    </a>
+    <nav class="main">
+      <a href="index.html">Accueil</a>
+      <a href="acces.html">Accès</a>
+      <a href="piscine.html">Piscine</a>
+      <a href="infos-pratiques.html" class="active">Infos pratiques</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:56px;">
+  <div class="wrap">
+    <div class="eyebrow">Avant · Pendant · Après</div>
+    <h1 style="max-width:20ch;">Infos pratiques</h1>
+    <p class="lede">Wi-Fi, clés, poubelles, règles de la maison et checklist de départ — tout ce qu'il faut pour un séjour tranquille du début à la fin.</p>
+  </div>
+</section>
+
+<section class="chapter" id="avant" style="padding-top:56px;">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-num">01</span><h2>Avant d'arriver</h2></div>
+    <div class="pgrid">
+      <div class="pcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9c5-4.5 13-4.5 18 0"/><path d="M6.5 12.8c3.3-3 7.7-3 11 0"/><path d="M10 16.6c1.3-1.2 2.7-1.2 4 0"/><circle cx="12" cy="19.5" r="1"/></svg></div>
+        <h4>Wi-Fi</h4>
+        <p>Nom du réseau et mot de passe.</p>
+        <span class="fill">à compléter</span>
+      </div>
+      <div class="pcard">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 4l3 3M13 9l2.5 2.5"/></svg></div>
+        <h4>Clés &amp; accès</h4>
+        <p>Où récupérer les clés et comment entrer à l'arrivée.</p>
+        <span class="fill">à compléter</span>
+      </div>
+      <div class="pcard">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 4h3.4l1.6 4-2 1.4a11 11 0 0 0 5.1 5.1l1.4-2 4 1.6v3.4a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3 5.6 1.5 1.5 0 0 1 4.5 4Z"/></svg></div>
+        <h4>Contact</h4>
+        <p>Un numéro à joindre en cas de besoin pendant le séjour.</p>
+        <span class="fill">à compléter</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter tint" id="pendant">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-num">02</span><h2>Pendant le séjour</h2></div>
+    <div class="pgrid">
+      <div class="pcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></svg></div>
+        <h4>Climatisation</h4>
+        <p>Emplacement de la télécommande et consignes d'usage.</p>
+        <span class="fill">à compléter</span>
+      </div>
+      <div class="pcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M6 7l1 13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-13"/><path d="M10 11v6M14 11v6"/></svg></div>
+        <h4>Poubelles</h4>
+        <p>Jours de collecte et emplacement des containers.</p>
+        <span class="fill">à compléter</span>
+      </div>
+      <div class="pcard">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16V11l2-5h12l2 5v5"/><path d="M4 16h16"/><path d="M4 16v2.5a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V16M17 16v2.5a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V16"/><circle cx="7.5" cy="13" r="1"/><circle cx="16.5" cy="13" r="1"/></svg></div>
+        <h4>Parking</h4>
+        <p>Où se garer, nombre de places disponibles.</p>
+        <span class="fill">à compléter</span>
+      </div>
+      <div class="pcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c9 0 14-5 14-14-9 0-14 5-14 14Z"/><path d="M5 19c0-5 2.5-8.5 7-11"/></svg></div>
+        <h4>Jardin</h4>
+        <p>Arrosage automatique — réglages à ne pas modifier.</p>
+        <span class="fill">à compléter</span>
+      </div>
+      <div class="pcard">
+        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c1.2 1 2.4 1 3.6 0 1.2-1 2.4-1 3.6 0 1.2 1 2.4 1 3.6 0 1.2-1 2.4-1 3.6 0 1.2 1 2.4 1 3.6 0"/><path d="M3 21c1.2 1 2.4 1 3.6 0 1.2-1 2.4-1 3.6 0 1.2 1 2.4 1 3.6 0 1.2-1 2.4-1 3.6 0 1.2 1 2.4 1 3.6 0"/><path d="M6 13V6a2 2 0 0 1 2-2h3l6 6"/><circle cx="16" cy="5" r="1"/></svg></div>
+        <h4>Piscine</h4>
+        <p>Le geste à refaire tous les 2-3 jours.</p>
+        <a href="piscine.html" style="font-size:.85rem; font-weight:700; color:var(--ochre); text-decoration:none;">Voir le guide complet <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="pcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-9"/><path d="M10 20v-5h4v5"/></svg></div>
+        <h4>Équipements</h4>
+        <p>TV, électroménager et autres appareils de la maison.</p>
+        <span class="fill">à compléter</span>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:52px;">
+      <div class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
+      <h3>Règles de la maison</h3>
+      <span class="freq">liste indicative — à ajuster</span>
+    </div>
+    <div class="route-map">
+      <div class="pgrid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;">
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Non-fumeur à l'intérieur de la maison</span></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Surveillance des enfants obligatoire à la piscine</span></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Calme après 22h</span></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Local piscine : ne pas modifier les réglages</span></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Ne pas modifier l'arrosage automatique</span></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Laisser la maison propre et rangée au départ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="apres">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-num">03</span><h2>Avant de partir</h2></div>
+    <p class="chapter-sub">Checklist de départ.</p>
+    <div class="route-map">
+      <div class="pgrid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px;">
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Piscine : robot débranché et rangé, filtration en position « Filtration »</span></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Fenêtres et volets fermés</span></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Climatisation éteinte</span></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Poubelles sorties</span></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--olive);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span>Vaisselle et cuisine rangées</span></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:var(--ochre);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 4l3 3M13 9l2.5 2.5"/></svg></span><span>Clés : <em style="color:var(--ink-faint);">où les laisser — à compléter</em></span></div>
+      </div>
+    </div>
+
+    <div class="callout" style="border-color:var(--line); background:var(--paper); margin-top:24px;">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4.2"/></svg></div>
+      <div><strong>Numéros utiles</strong><p>SAMU <a href="tel:15" style="color:var(--shutter-deep); font-weight:600;">15</a> · Pompiers <a href="tel:18" style="color:var(--shutter-deep); font-weight:600;">18</a> · Police <a href="tel:17" style="color:var(--shutter-deep); font-weight:600;">17</a> · Urgence Europe <a href="tel:112" style="color:var(--shutter-deep); font-weight:600;">112</a> · Hôpital le plus proche : Avignon (CHU), à environ 10-15 min de Vedène.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="index.html">
+        <span class="slats"><span></span><span></span><span></span></span>
+        <span class="brand-text">Maison Bourely<small>769 Av. Vidier · 84270 Vedène</small></span>
+      </a>
+    </div>
+    <div class="foot-emg">
+      <a href="tel:15"><span class="num">15</span>SAMU</a>
+      <a href="tel:18"><span class="num">18</span>Pompiers</a>
+      <a href="tel:17"><span class="num">17</span>Police</a>
+      <a href="tel:112"><span class="num">112</span>Urgence UE</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
