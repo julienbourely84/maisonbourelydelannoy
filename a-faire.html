@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos idées de sorties — Maison Bourély-Delannoy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --stone: #F3EEE2;
+      --stone-deep: #E8E0CC;
+      --paper: #FBF8F1;
+      --shutter: #2C4652;
+      --shutter-deep: #1D323C;
+      --shutter-soft: #4E6E7A;
+      --olive: #6B7A47;
+      --olive-deep: #4F5B34;
+      --ochre: #8C5F22;
+      --ochre-soft: #E4C08F;
+      --ochre-mid: #C1893E;
+      --ink: #22303A;
+      --ink-soft: #55636B;
+      --ink-faint: #8A9298;
+      --line: #D9D0BA;
+      --white: #FFFFFF;
+      --shadow: 0 1px 2px rgba(29,50,60,.04), 0 8px 24px rgba(29,50,60,.07);
+      --shadow-lift: 0 4px 10px rgba(29,50,60,.06), 0 16px 40px rgba(29,50,60,.12);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--stone);
+      color: var(--ink);
+      font-family: 'Work Sans', -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; color: var(--shutter-deep); margin: 0; line-height: 1.15; }
+    p { margin: 0 0 1em; }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+
+    /* ---------- shutter-slat motif ---------- */
+    .slats { display: flex; flex-direction: column; gap: 4px; width: 34px; }
+    .slats span { display: block; height: 3px; border-radius: 2px; background: currentColor; }
+    .slats span:nth-child(1){ width: 100%; opacity:.95;}
+    .slats span:nth-child(2){ width: 78%; opacity:.7;}
+    .slats span:nth-child(3){ width: 55%; opacity:.45;}
+
+    /* ---------- header / nav ---------- */
+    header.site {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(251,248,241,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    header.site .bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 28px; max-width: 1040px; margin: 0 auto;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--shutter-deep); }
+    .brand .slats { color: var(--ochre); }
+    .brand-text { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; letter-spacing: .01em; }
+    .brand-text small { display: block; font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin-top: 1px; }
+
+    nav.main { display: flex; gap: 4px; }
+    nav.main a {
+      text-decoration: none; color: var(--ink-soft); font-size: .92rem; font-weight: 500;
+      padding: 8px 14px; border-radius: 999px; transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    nav.main a:hover { background: var(--stone-deep); color: var(--shutter-deep); }
+    nav.main a.active { background: var(--shutter); color: var(--paper); }
+    .nav-toggle { display: none; }
+
+    @media (max-width: 720px) {
+      header.site .bar { padding: 14px 20px; }
+      nav.main { position: fixed; inset: auto 0 0 0; background: var(--paper); border-top: 1px solid var(--line);
+        justify-content: space-around; padding: 6px 6px calc(6px + env(safe-area-inset-bottom)); box-shadow: 0 -6px 20px rgba(29,50,60,.08); }
+      nav.main a { flex: 1; text-align: center; padding: 8px 4px; font-size: .74rem; }
+      body { padding-bottom: 64px; }
+    }
+
+    /* ---------- eyebrow / labels ---------- */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--ochre);
+      margin-bottom: 14px;
+    }
+    .eyebrow::before { content:''; width: 18px; height: 1px; background: var(--ochre); }
+
+    /* ---------- hero ---------- */
+    .hero {
+      background:
+        radial-gradient(ellipse 900px 500px at 85% -10%, rgba(107,122,71,.16), transparent 60%),
+        linear-gradient(180deg, var(--shutter-deep), var(--shutter) 65%, var(--shutter-soft));
+      color: var(--paper);
+      padding: 76px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: ''; position: absolute; right: -60px; top: -40px; width: 340px; height: 340px;
+      border: 1px solid rgba(251,248,241,.14); border-radius: 50%;
+    }
+    .hero::before {
+      content: ''; position: absolute; right: 40px; top: 20px; width: 220px; height: 220px;
+      border: 1px solid rgba(251,248,241,.1); border-radius: 50%;
+    }
+    .hero .wrap { position: relative; }
+    .hero .eyebrow { color: var(--ochre-soft); }
+    .hero .eyebrow::before { background: var(--ochre-soft); }
+    .hero h1 { color: var(--white); font-size: clamp(2.1rem, 4.6vw, 3.4rem); max-width: 15ch; }
+    .hero .lede { color: rgba(251,248,241,.82); font-size: 1.1rem; max-width: 46ch; margin-top: 16px; }
+
+    /* ---------- quick info bar ---------- */
+    .infobar {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+      margin-top: -34px; position: relative; z-index: 2; box-shadow: var(--shadow-lift);
+    }
+    .infobar .cell { background: var(--paper); padding: 18px 20px; }
+    .infobar .cell .ic { color: var(--olive); margin-bottom: 10px; }
+    .infobar .cell .k { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); font-weight: 600; margin-bottom: 3px; }
+    .infobar .cell .v { font-size: .95rem; font-weight: 600; color: var(--shutter-deep); }
+    .infobar .cell .v.muted { color: var(--ink-faint); font-weight: 500; font-style: italic; font-size: .85rem;}
+
+    /* ---------- section chapters (avant/pendant/après) ---------- */
+    .chapter { padding: 68px 0; }
+    .chapter.tint { background: var(--stone-deep); }
+    .chapter-head { display:flex; align-items:baseline; gap:18px; margin-bottom: 36px; flex-wrap: wrap;}
+    .chapter-num { font-family:'JetBrains Mono',monospace; font-size:.85rem; color: var(--ochre); border:1px solid var(--ochre-soft); padding: 3px 10px; border-radius: 999px;}
+    .chapter-head h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+    .chapter-sub { color: var(--ink-soft); max-width: 60ch; margin-top: -20px; margin-bottom: 32px;}
+
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 18px; }
+    .card {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 26px; box-shadow: var(--shadow); text-decoration: none; color: inherit;
+      transition: transform .18s ease, box-shadow .18s ease; display:flex; flex-direction:column; gap:12px;
+    }
+    a.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+    .card .ic { color: var(--shutter); }
+    .card h3 { font-size: 1.15rem; }
+    .card p { color: var(--ink-soft); font-size: .92rem; margin-bottom: 0; }
+    .card .go { margin-top: auto; font-size: .82rem; font-weight: 600; color: var(--ochre); display:flex; align-items:center; gap:6px; }
+
+    /* ---------- buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+      font-weight: 600; font-size: .95rem; padding: 13px 24px; border-radius: 999px;
+      border: 1px solid transparent; transition: transform .15s, box-shadow .15s, background .15s;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--ochre); color: var(--white); box-shadow: var(--shadow); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+    .btn-ghost { background: transparent; border-color: rgba(251,248,241,.4); color: var(--paper); }
+    .btn-ghost:hover { background: rgba(251,248,241,.12); }
+    .btn-outline { background: var(--paper); border-color: var(--line); color: var(--shutter-deep); }
+    .btn-outline:hover { border-color: var(--shutter); }
+
+    /* ---------- steps (pool instructions) ---------- */
+    .steps { display: flex; flex-direction: column; gap: 14px; }
+    .step {
+      display: grid; grid-template-columns: 220px 1fr; gap: 24px;
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 20px; align-items: center;
+    }
+    .step .num {
+      font-family: 'JetBrains Mono', monospace; color: var(--ochre); font-size: .78rem;
+      letter-spacing: .08em; margin-bottom: 8px; display:block;
+    }
+    .step figure { margin: 0; border-radius: 10px; overflow: hidden; background: var(--stone-deep); aspect-ratio: 4/3;}
+    .step figure img { width: 100%; height: 100%; object-fit: cover; }
+    .step:has(.figs) { grid-template-columns: 340px 1fr; }
+    .step .figs { display:flex; gap:8px; }
+    .step .figs figure { flex: 1; min-width: 0; }
+    @media (max-width: 640px) { .step:has(.figs) { grid-template-columns: 1fr; } }
+    .step .body h4 { font-size: 1.02rem; margin-bottom: 6px; color: var(--shutter-deep); }
+    .step .body p { color: var(--ink-soft); font-size: .93rem; margin-bottom: 0; }
+    @media (max-width: 640px) { .step { grid-template-columns: 1fr; } }
+
+    .section-label {
+      display:flex; align-items:center; gap: 14px; margin: 46px 0 18px;
+    }
+    .section-label .dot { width: 34px; height:34px; border-radius:50%; background:var(--shutter); color:var(--paper); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+    .section-label h3 { font-size: 1.3rem; }
+    .section-label .freq { color: var(--ink-faint); font-size: .82rem; margin-left:auto; text-align:right; font-style:italic;}
+    .section-intro-first .section-label { margin-top: 0; }
+
+    /* ---------- callouts ---------- */
+    .callout {
+      display:flex; gap:14px; padding: 18px 20px; border-radius: var(--radius);
+      border: 1px solid var(--ochre-soft); background: #FBF1E1; margin: 18px 0;
+    }
+    .callout .ic { color: var(--ochre); flex-shrink:0; margin-top:2px;}
+    .callout strong { color: var(--shutter-deep); }
+    .callout p { margin: 4px 0 0; color: var(--ink-soft); font-size: .93rem; }
+
+    /* ---------- dial (valve position) ---------- */
+    .dial-row { display:flex; gap:10px; flex-wrap:wrap; margin: 6px 0 4px; }
+    .dial {
+      font-family:'JetBrains Mono',monospace; font-size:.76rem; letter-spacing:.08em;
+      border: 1.5px solid var(--line); color: var(--ink-faint); padding: 6px 13px; border-radius: 8px;
+      text-transform: uppercase;
+    }
+    .dial.active { border-color: var(--shutter); color: var(--shutter-deep); background: var(--stone); font-weight:600; }
+    .dial.arrow::after { content:'→'; margin-left:8px; color: var(--ink-faint); }
+    .dial.arrow:last-child::after { content:''; }
+
+    /* ---------- practical info grid ---------- */
+    .pgrid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; }
+    .pcard { background:var(--paper); border:1px solid var(--line); border-radius: var(--radius); padding:22px; box-shadow: var(--shadow); }
+    .pcard .ic { color: var(--olive); margin-bottom: 12px; }
+    .pcard h4 { font-size: 1.02rem; margin-bottom: 8px; }
+    .pcard p { color: var(--ink-soft); font-size: .9rem; margin-bottom:0; }
+    .fill {
+      display:inline-block; margin-top:10px; font-family:'JetBrains Mono',monospace; font-size:.72rem;
+      letter-spacing:.05em; color: var(--ochre); background: #FBF1E1; border:1px dashed var(--ochre-soft);
+      padding: 5px 10px; border-radius: 7px;
+    }
+
+    /* ---------- gallery placeholders ---------- */
+    .gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:14px; }
+    .gtile {
+      aspect-ratio: 4/3; border-radius: 12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+      background: repeating-linear-gradient(135deg, var(--stone-deep), var(--stone-deep) 10px, var(--stone) 10px, var(--stone) 20px);
+      border: 1px solid var(--line); color: var(--ink-faint);
+    }
+    .gtile .ic { color: var(--shutter-soft); }
+    .gtile span { font-size: .74rem; font-weight:600; letter-spacing:.03em; }
+    .gphoto { position:relative; border-radius:12px; overflow:hidden; aspect-ratio:4/3; background:var(--stone-deep); box-shadow: var(--shadow); }
+    .gphoto img { width:100%; height:100%; object-fit:cover; display:block; }
+    .gphoto figcaption {
+      position:absolute; left:0; right:0; bottom:0; margin:0; padding:22px 12px 10px;
+      background: linear-gradient(0deg, rgba(20,32,38,.82), transparent);
+      color:#fff; font-size:.78rem; font-weight:600; letter-spacing:.02em;
+    }
+
+    /* ---------- destination cards (à voir) ---------- */
+    .dgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:20px; }
+    .dcard { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; }
+    .dcard figure { margin:0; aspect-ratio:4/3; background:var(--stone-deep); position:relative; }
+    .dcard figure img { width:100%; height:100%; object-fit:cover; display:block; }
+    .dcard figure.dcard-ic {
+      display:flex; align-items:center; justify-content:center;
+      background: repeating-linear-gradient(135deg, var(--stone-deep), var(--stone-deep) 10px, var(--stone) 10px, var(--stone) 20px);
+    }
+    .dcard figure.dcard-ic .placeholder-ic { color: var(--shutter-soft); }
+    .dcard .rank {
+      position:absolute; top:10px; left:10px; width:30px; height:30px; border-radius:50%;
+      background:var(--shutter-deep); color:var(--paper); display:flex; align-items:center; justify-content:center;
+      font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.85rem; box-shadow:var(--shadow);
+    }
+    .dcard-body { padding:18px 20px; display:flex; flex-direction:column; gap:6px; flex:1; }
+    .dcard-cat { font-size:.68rem; text-transform:uppercase; letter-spacing:.09em; color:var(--ochre); font-weight:700; }
+    .dcard-head { display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+    .dcard-head h3 { font-size:1.08rem; }
+    .dtime {
+      font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--olive-deep); background:#EEF0E2;
+      border:1px solid #D7DCC0; padding:3px 9px; border-radius:999px; white-space:nowrap; font-weight:600;
+    }
+    .dcard-body p { font-size:.88rem; color:var(--ink-soft); margin-bottom:0; flex:1; }
+
+    /* ---------- tip list (à faire) ---------- */
+    .tip-list { display:flex; flex-direction:column; }
+    .tip-item { display:grid; grid-template-columns:30px 1fr; gap:14px; padding:18px 0; border-bottom:1px solid var(--line); }
+    .tip-item:first-child { padding-top:2px; }
+    .tip-item:last-child { border-bottom:none; padding-bottom:2px; }
+    .tip-item .ic { color:var(--olive); margin-top:2px; }
+    .tip-item h4 { font-size:1rem; margin-bottom:4px; color:var(--shutter-deep); }
+    .tip-item p { font-size:.9rem; color:var(--ink-soft); margin-bottom:0; }
+
+    /* ---------- route / access ---------- */
+    .route-map { background: var(--paper); border:1px solid var(--line); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); }
+    .waypoints { display:flex; flex-direction:column; }
+    .wp { display:grid; grid-template-columns: 34px 1fr; gap:16px; position:relative; padding-bottom: 26px; }
+    .wp:last-child{ padding-bottom:0;}
+    .wp .pin { width:34px; height:34px; border-radius:50%; background:var(--stone-deep); border:2px solid var(--shutter); color:var(--shutter-deep); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:.78rem; font-weight:700; z-index:1; }
+    .wp.dest .pin { background: var(--ochre); border-color: var(--ochre); color: var(--white); }
+    .wp:not(:last-child)::before { content:''; position:absolute; left:16px; top:34px; bottom:0; width:2px; background: var(--line); }
+    .wp h4 { font-size: .98rem; margin-bottom:3px; }
+    .wp p { font-size: .87rem; color: var(--ink-soft); margin-bottom:0; }
+    .wp .tag { display:inline-block; font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color: var(--olive); font-weight:700; margin-top:4px;}
+
+    /* ---------- address block ---------- */
+    .addr-block { display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between; }
+    .addr-text { font-family:'Fraunces',serif; font-size:1.3rem; color: var(--shutter-deep); }
+    .addr-text small { display:block; font-family:'Work Sans',sans-serif; font-size:.78rem; color: var(--ink-faint); text-transform:uppercase; letter-spacing:.08em; margin-top:4px; font-weight:600;}
+
+    /* ---------- footer ---------- */
+    footer.site { background: var(--shutter-deep); color: rgba(251,248,241,.75); padding: 48px 0 90px; margin-top: 20px; }
+    footer.site .wrap { display:flex; flex-wrap:wrap; gap:28px; justify-content:space-between; align-items:flex-start; }
+    footer.site .brand-text { color: var(--paper); }
+    footer.site .brand .slats { color: var(--ochre-soft); }
+    .foot-emg { display:flex; gap:22px; flex-wrap:wrap; }
+    .foot-emg a { text-decoration:none; color: rgba(251,248,241,.85); font-size:.86rem; }
+    .foot-emg .num { font-family:'JetBrains Mono',monospace; color: var(--ochre-soft); font-weight:700; margin-right:6px; }
+    @media (max-width: 720px) { footer.site { padding-bottom: 100px; } }
+
+    ::selection { background: var(--ochre-soft); color: var(--shutter-deep); }
+    :focus-visible { outline: 2px solid var(--ochre); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <a class="brand" href="index.html">
+      <span class="slats"><span></span><span></span><span></span></span>
+      <span class="brand-text">Maison Bourély-Delannoy<small>Vedène · Provence</small></span>
+    </a>
+    <nav class="main">
+      <a href="index.html">Accueil</a>
+      <a href="acces.html">Accès</a>
+      <a href="piscine.html">Piscine</a>
+      <a href="infos-pratiques.html">Infos</a>
+      <a href="a-voir.html">Top 10</a>
+      <a href="a-faire.html" class="active">Sorties</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:56px;">
+  <div class="wrap">
+    <div class="eyebrow">02 · Pendant le séjour</div>
+    <h1 style="max-width:22ch;">Nos idées de sorties</h1>
+    <p class="lede">Quelques idées de visite pour votre séjour, écrites par nos soins — nos coins préférés, nos astuces pratiques (parking, horaires, prix) et nos restaurants favoris à Avignon.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="wrap">
+
+    <div class="section-label section-intro-first">
+      <div class="dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg></div>
+      <h3>Visiter Avignon</h3>
+    </div>
+    <div class="route-map">
+      <div class="tip-list">
+        <div class="tip-item">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16V11l2-5h12l2 5v5"/><path d="M4 16h16"/><path d="M4 16v2.5a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V16M17 16v2.5a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V16"/><circle cx="7.5" cy="13" r="1"/><circle cx="16.5" cy="13" r="1"/></svg></div>
+          <div><h4>Le bon plan pour se garer</h4><p>Garez-vous à l'Île Piot (entre Villeneuve-lès-Avignon et Avignon) et prenez la navette-bus gratuite jusqu'au centre-ville.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg></div>
+          <div><h4>Pont d'Avignon, Palais des Papes & Rocher des Doms</h4><p>Montez jusqu'au Rocher des Doms pour vous promener et profiter des beaux paysages : vue sur Villeneuve-lès-Avignon et le Mont Ventoux.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7.2 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10.2 12 3 12 3Z"/></svg></div>
+          <div><h4>L'Île de la Barthelasse & la navette fluviale</h4><p>Belle vue sur Avignon et de belles photos à faire du Pont Bénézet, des remparts et du Palais des Papes. On recommande la promenade sur le quai aménagé aux piétons. Une navette fluviale gratuite traverse le Rhône toutes les 15 min (3-4 min de traversée).</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">
+      <div class="dot"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2Z"/></svg></div>
+      <h3>Tout près de la maison</h3>
+      <span class="freq">10 min</span>
+    </div>
+    <div class="callout" style="border-color:var(--line); background:var(--paper);">
+      <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2Z"/></svg></div>
+      <div><strong>Parc d'attraction &amp; parc aquatique Spirou</strong><p>À 10 min de la maison, très sympa pour les petits comme pour les grands. Cette année, le parc a ajouté des attractions sur le thème de Naruto. Pensez au pique-nique.</p></div>
+    </div>
+
+    <div class="section-label">
+      <div class="dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7.2 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10.2 12 3 12 3Z"/></svg></div>
+      <h3>Nature &amp; fraîcheur : les Gorges du Toulourenc</h3>
+    </div>
+    <p style="color:var(--ink-soft); margin-top:-8px;">Une jolie balade les pieds dans l'eau : possible de remonter le lit sur plusieurs km, ou sur 500 m avec des enfants en bas âge. Agréable par temps de canicule — ombre, belles roches, petites plages de galets. Il y a du monde, mais la foule diminue au fil du parcours.</p>
+    <div class="callout">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 3.8 2.7 18a1.6 1.6 0 0 0 1.4 2.4h15.8a1.6 1.6 0 0 0 1.4-2.4L13.4 3.8a1.6 1.6 0 0 0-2.8 0Z"/><path d="M12 9.5v4.2"/><circle cx="12" cy="16.7" r="0.15" fill="currentColor" stroke-width="2.4"/></svg></div>
+      <div><strong>Parking désormais payant : environ 10 €</strong><p>Ça vaut le coup ! Avec des enfants, mieux vaut se garer au deuxième parking.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="chapter tint">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-num">＋</span><h2>Les marchés de la semaine</h2></div>
+    <div class="dgrid">
+      <div class="dcard">
+        <div class="dcard-body" style="padding-top:22px;">
+          <span class="dcard-cat">Jeudi matin</span>
+          <div class="dcard-head"><h3>Villeneuve-lès-Avignon</h3></div>
+          <p>Profitez-en pour vous promener dans les petites rues de la ville et y manger.</p>
+        </div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-body" style="padding-top:22px;">
+          <span class="dcard-cat">Samedi matin</span>
+          <div class="dcard-head"><h3>Uzès</h3></div>
+          <p>Profitez-en pour visiter le musée Haribo (plaît toujours aux enfants !), puis passez le reste de la journée au Pont du Gard — pique-nique et/ou maillot de bain. Attention, l'accès est désormais payant, environ 10 € par voiture.</p>
+        </div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-body" style="padding-top:22px;">
+          <span class="dcard-cat">Dimanche matin</span>
+          <div class="dcard-head"><h3>L'Isle-sur-la-Sorgue</h3></div>
+          <p>Grand marché aux couleurs de Provence le long de la Sorgue et dans la ville : fruits, légumes, vêtements, chapeaux... Venez tôt, pas facile de se garer en été.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="wrap">
+    <div class="section-label section-intro-first">
+      <div class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M8 6h6a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4H8a4 4 0 0 0-4 4v0"/></svg></div>
+      <h3>Plus loin, en Vaucluse &amp; Bouches-du-Rhône</h3>
+    </div>
+    <div class="route-map">
+      <div class="tip-list">
+        <div class="tip-item">
+          <div class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19 9.5 7l3 5.2L15.5 9 21 19Z"/><path d="M12.6 14.2 15.5 9"/></svg></div>
+          <div><h4>Les Ocres de Roussillon</h4><p>Un village aux couleurs incroyables, au cœur des carrières d'ocre.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V11a8 8 0 0 1 16 0v10"/><path d="M4 21h16M8 21v-9M16 21v-9"/></svg></div>
+          <div><h4>Les Baux-de-Provence</h4><p>À combiner avec les Carrières de Lumières, juste à côté.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19 9.5 7l3 5.2L15.5 9 21 19Z"/><path d="M12.6 14.2 15.5 9"/></svg></div>
+          <div><h4>Gordes</h4><p>L'un des plus beaux villages perchés de la région.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7.2 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10.2 12 3 12 3Z"/></svg></div>
+          <div><h4>Fontaine-de-Vaucluse</h4><p>Juste à côté, possibilité de faire du canoë (très chouette !) et un accrobranche, juste à côté du canoë.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">
+      <div class="dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg></div>
+      <h3>Une grande sortie</h3>
+    </div>
+    <div class="route-map">
+      <div class="tip-list">
+        <div class="tip-item">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg></div>
+          <div><h4>Marseille</h4><p>Une journée au Vieux-Port et au MuCEM.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7.2 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10.2 12 3 12 3Z"/></svg></div>
+          <div><h4>Cassis &amp; les Calanques</h4><p>Une journée pour découvrir les calanques — il faut désormais réserver un créneau sur internet.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="border-color:var(--line); background:var(--paper); margin-top:24px;">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c9 0 14-5 14-14-9 0-14 5-14 14Z"/><path d="M5 19c0-5 2.5-8.5 7-11"/></svg></div>
+      <div><strong>Envie d'un zoo ?</strong><p>Le zoo de la Barben est très bien !</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter tint">
+  <div class="wrap">
+    <div class="section-label section-intro-first">
+      <div class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M8 6h6a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4H8a4 4 0 0 0-4 4v0"/></svg></div>
+      <h3>Du côté du Gard &amp; de l'Hérault</h3>
+    </div>
+    <div class="route-map">
+      <div class="tip-list">
+        <div class="tip-item">
+          <div class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V11a8 8 0 0 1 16 0v10"/><path d="M4 21h16M8 21v-9M16 21v-9"/></svg></div>
+          <div><h4>Nîmes</h4><p>Les arènes, la Maison Carrée...</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7.2 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10.2 12 3 12 3Z"/></svg></div>
+          <div><h4>En Camargue</h4><p>Aigues-Mortes (réservez le petit train pour visiter les salins, c'est plutôt sympa) et le Grau-du-Roi.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M8 6h6a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4H8a4 4 0 0 0-4 4v0"/></svg></div>
+          <div><h4>Montpellier</h4><p>Garez-vous à L'Odysseum — pour les enfants, il y a un super restaurant de pirates et un aquarium — puis prenez le tram jusqu'au centre-ville.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19 9.5 7l3 5.2L15.5 9 21 19Z"/><path d="M12.6 14.2 15.5 9"/></svg></div>
+          <div><h4>Saint-Guilhem-le-Désert</h4><p>Dans l'arrière-pays de Montpellier, une superbe petite ville.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="wrap">
+    <div class="chapter-head"><span class="chapter-num">＋</span><h2>Nos restaurants préférés</h2></div>
+    <p class="chapter-sub">Tous les trois en centre-ville d'Avignon.</p>
+    <div class="dgrid">
+      <div class="dcard">
+        <div class="dcard-body" style="padding-top:22px;">
+          <span class="dcard-cat">Cuisine provençale · en bord de Rhône</span>
+          <div class="dcard-head"><h3>Le Bercail</h3></div>
+          <p>Sur l'Île de la Barthelasse, terrasse ombragée face au Pont d'Avignon — une institution depuis 1965. Idéal à combiner avec la balade sur l'île et la navette fluviale.</p>
+        </div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-body" style="padding-top:22px;">
+          <span class="dcard-cat">Cuisine libanaise · centre-ville</span>
+          <div class="dcard-head"><h3>Le Cèdre</h3></div>
+          <p>À deux pas du Pont d'Avignon, mezze traditionnel et grillades dans un cadre dépaysant.</p>
+        </div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-body" style="padding-top:22px;">
+          <span class="dcard-cat">Cuisine japonaise · centre-ville</span>
+          <div class="dcard-head"><h3>Naka</h3></div>
+          <p>Sushis, yakitoris et tempuras sur une placette calme et ombragée d'Avignon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="index.html">
+        <span class="slats"><span></span><span></span><span></span></span>
+        <span class="brand-text">Maison Bourély-Delannoy<small>769 Av. Vidier · 84270 Vedène</small></span>
+      </a>
+    </div>
+    <div class="foot-emg">
+      <a href="tel:15"><span class="num">15</span>SAMU</a>
+      <a href="tel:18"><span class="num">18</span>Pompiers</a>
+      <a href="tel:17"><span class="num">17</span>Police</a>
+      <a href="tel:112"><span class="num">112</span>Urgence UE</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
